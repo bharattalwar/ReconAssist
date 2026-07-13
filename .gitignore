@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+my_env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets — NEVER commit real keys
+.env
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+generated/
