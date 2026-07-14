@@ -22,7 +22,7 @@
 ## 2. Workflow patterns 📖 (know these cold — common interview topic)
 
 - **Prompt chaining** — decompose a task into a fixed sequence of LLM calls; each output feeds the next. Best when the task splits cleanly into steps.
-- **Routing** 🔨(S4) — classify the input, then dispatch to the right handler/tool/prompt. In ReconAssist, the LLM routes *itself* via tool-calling (internal vs web vs both).
+- **Routing** 🔨(S4) — classify the input, then dispatch to the right handler/tool/prompt. In ReconAssist, the LLM routes *itself* via tool-calling (internal vs web vs both). **Routing is *emergent*: we write no routing code — the model reads the tool *docstrings* and chooses. So the first lever when it routes wrong is the docstring, not new code.** Multi-part questions trigger the multi-step ReAct loop (call one tool → observe → call the next → answer).
 - **Parallelization** — run LLM calls concurrently. Two flavors: **sectioning** (split a task into independent parts, run in parallel, merge) and **voting** (run the same task N times, aggregate/vote for reliability).
 - **Reflection / evaluator-optimizer** 🔨(S7) — one LLM produces, another **critiques**, loop until it passes. Our verifier node is this pattern.
 - **Orchestrator-worker** — a central LLM breaks a task into subtasks, delegates to worker LLMs, and synthesizes their outputs. Good for open-ended tasks whose subtasks aren't known up front.
